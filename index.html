@@ -135,7 +135,7 @@
 
         #explodeButton {
             position: absolute;
-            bottom: 20px;
+            bottom: 5vh;  /* Use 5% of the viewport height to adjust for the browser UI */
             left: 50%;
             transform: translateX(-50%);
             padding: 10px 20px;
@@ -149,6 +149,7 @@
             transition: background-color 0.3s, transform 0.3s;
             z-index: 10; /* Ensure the button is on top */
         }
+
 
         /* Responsive adjustment for smaller screens */
         @media (max-width: 600px) {
@@ -195,6 +196,15 @@ window.addEventListener('click', function() {
 
 
 
+window.addEventListener('load', adjustButtonPosition);
+window.addEventListener('resize', adjustButtonPosition);
+
+function adjustButtonPosition() {
+    const button = document.getElementById('explodeButton');
+    const viewportHeight = window.innerHeight;
+
+    button.style.bottom = `${Math.max(10, viewportHeight * 0.05)}px`; 
+}
 
 
 
