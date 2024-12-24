@@ -220,18 +220,6 @@ window.addEventListener('click', function() {
 
 
 
-window.addEventListener('load', adjustButtonPosition);
-window.addEventListener('resize', adjustButtonPosition);
-
-function adjustButtonPosition() {
-    const button = document.getElementById('explodeButton');
-    const viewportHeight = window.innerHeight;
-
-    button.style.bottom = `${Math.max(10, viewportHeight * 0.05)}px`; 
-}
-
-
-
     document.getElementById('explodeButton').addEventListener('click', function() {
         var audio = new Audio('daj.mp3');
         audio.volume = 1;
