@@ -4,8 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Animated DAJ</title>
-    <button id="explodeButton">Explode DAJ</button>
+
+
+
     <style>
+
+        audio {
+            display: none;
+        }
+
         body {
             margin: 0;
             height: 100vh;
@@ -151,6 +158,11 @@
     </style>
 </head>
 <body>
+    <audio id="bgm" loop>
+        <source src="bgm.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+      </audio>
+
     <div class="background-circle"></div>
     <div class="background-circle"></div>
     <div class="background-circle"></div>
@@ -159,15 +171,26 @@
     <div class="bouncing-text">DAJ</div>
     <div class="bouncing-text">DAJ</div>
 
-    <audio autoplay loop>
-        <source src="bgm.mp3" type="audio/mpeg">
-    </audio>
+    <button id="explodeButton">Explode DAJ</button>
 </body>
 </html>
 
 <script>
+
+window.addEventListener('click', function() {
+    var bgm = new Audio('bgm.mp3');
+    bgm.volume = 0.1;  // Set volume to 20% (0.0 to 1.0 scale)
+    bgm.play();
+});
+
+
+
+
+
+
     document.getElementById('explodeButton').addEventListener('click', function() {
         var audio = new Audio('daj.mp3');
+        audio.volume = 1;
         audio.play();
     
         const explosionContainer = document.createElement('div');
