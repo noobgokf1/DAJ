@@ -147,7 +147,17 @@
             cursor: pointer;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
             transition: background-color 0.3s, transform 0.3s;
+            z-index: 10; /* Ensure the button is on top */
         }
+
+        /* Responsive adjustment for smaller screens */
+        @media (max-width: 600px) {
+            #explodeButton {
+                bottom: 10px; /* Adjust the button's bottom position for mobile */
+                font-size: 1em; /* Slightly reduce the font size */
+            }
+        }
+
 
         #explodeButton:hover {
             background-color: #9d4edd;
@@ -171,7 +181,7 @@
     <div class="bouncing-text">DAJ</div>
     <div class="bouncing-text">DAJ</div>
 
-    <button id="explodeButton">Explode DAJ</button>
+    <button id="explodeButton">Click</button>
 </body>
 </html>
 
@@ -179,7 +189,7 @@
 
 window.addEventListener('click', function() {
     var bgm = new Audio('bgm.mp3');
-    bgm.volume = 0.1;  // Set volume to 20% (0.0 to 1.0 scale)
+    bgm.volume = 0.1; 
     bgm.play();
 });
 
