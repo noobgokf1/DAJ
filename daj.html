@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated DAJ</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #6a0dad, #9d4edd);
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            position: relative;
+        }
+
+        .daj {
+            font-size: 10vw;
+            font-weight: bold;
+            color: white;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.9), 0 0 30px rgba(155, 89, 182, 0.7), 0 0 60px #9d4edd;
+            animation: glow 2s infinite alternate, float 5s infinite ease-in-out;
+        }
+
+        @keyframes glow {
+            0% {
+                text-shadow: 0 0 15px rgba(255, 255, 255, 0.9), 0 0 30px rgba(155, 89, 182, 0.7), 0 0 60px #9d4edd;
+            }
+            100% {
+                text-shadow: 0 0 30px rgba(255, 255, 255, 1), 0 0 50px rgba(155, 89, 182, 0.9), 0 0 80px #6a0dad;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-25px);
+            }
+        }
+
+        .background-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            animation: moveCircle 10s infinite ease-in-out;
+            mix-blend-mode: screen;
+        }
+
+        .background-circle:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            top: -100px;
+            left: -100px;
+            background: rgba(155, 89, 182, 0.2);
+            animation-duration: 6s;
+        }
+
+        .background-circle:nth-child(2) {
+            width: 250px;
+            height: 250px;
+            bottom: -50px;
+            right: -50px;
+            background: rgba(118, 72, 188, 0.3);
+            animation-duration: 8s;
+        }
+
+        .background-circle:nth-child(3) {
+            width: 200px;
+            height: 200px;
+            top: 20%;
+            left: 70%;
+            background: rgba(170, 102, 204, 0.2);
+            animation-duration: 10s;
+        }
+
+        @keyframes moveCircle {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            50% {
+                transform: translate(40px, 40px) scale(1.2);
+            }
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+        }
+
+        .bouncing-text {
+            position: absolute;
+            font-size: 2vw;
+            color: rgba(255, 255, 255, 0.2);
+            animation: bounce 6s infinite ease-in-out;
+            pointer-events: none;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                top: 10%;
+                left: 10%;
+            }
+            25% {
+                top: 10%;
+                left: 90%;
+            }
+            50% {
+                top: 90%;
+                left: 90%;
+            }
+            75% {
+                top: 90%;
+                left: 10%;
+            }
+        }
+
+        .bouncing-text:nth-child(5) {
+            animation-duration: 7s;
+        }
+
+        .bouncing-text:nth-child(6) {
+            animation-duration: 9s;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="background-circle"></div>
+    <div class="background-circle"></div>
+    <div class="background-circle"></div>
+    <div class="daj">DAJ</div>
+    <div class="bouncing-text">DAJ</div>
+    <div class="bouncing-text">DAJ</div>
+    <div class="bouncing-text">DAJ</div>
+
+    <audio autoplay loop>
+        <source src="bgm.mp3" type="audio/mpeg">
+    </audio>
+</body>
+</html>
