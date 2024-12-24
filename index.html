@@ -133,9 +133,30 @@
             animation-duration: 4.5s;
         }
 
+        body {
+            margin: 0;
+            height: 100vh; /* Make sure body takes full height of the viewport */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #6a0dad, #9d4edd);
+            overflow: hidden; /* Prevent scrolling */
+            font-family: Arial, sans-serif;
+            position: relative;
+        }
+
+        .daj {
+            font-size: 10vw;
+            font-weight: bold;
+            color: white;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.9), 0 0 30px rgba(155, 89, 182, 0.7), 0 0 60px #9d4edd;
+            animation: glow 1s infinite alternate, float 2.5s infinite ease-in-out;
+            position: absolute;
+        }
+
         #explodeButton {
             position: absolute;
-            bottom: 5vh;  /* Use 5% of the viewport height to adjust for the browser UI */
+            bottom: 10%; /* Adjust the button position to be higher up */
             left: 50%;
             transform: translateX(-50%);
             padding: 10px 20px;
@@ -150,12 +171,15 @@
             z-index: 10; /* Ensure the button is on top */
         }
 
-
-        /* Responsive adjustment for smaller screens */
+        /* Responsive adjustments */
         @media (max-width: 600px) {
+            .daj {
+                font-size: 15vw; /* Make the text size smaller on mobile for better fitting */
+            }
+
             #explodeButton {
-                bottom: 10px; /* Adjust the button's bottom position for mobile */
-                font-size: 1em; /* Slightly reduce the font size */
+                bottom: 15%; /* Move the button higher on small screens */
+                font-size: 1em; /* Reduce button font size on mobile */
             }
         }
 
