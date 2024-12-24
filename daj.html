@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Animated DAJ</title>
+    <button id="explodeButton">Explode DAJ</button>
     <style>
         body {
             margin: 0;
@@ -22,7 +23,7 @@
             font-weight: bold;
             color: white;
             text-shadow: 0 0 15px rgba(255, 255, 255, 0.9), 0 0 30px rgba(155, 89, 182, 0.7), 0 0 60px #9d4edd;
-            animation: glow 2s infinite alternate, float 5s infinite ease-in-out;
+            animation: glow 1s infinite alternate, float 2.5s infinite ease-in-out;
         }
 
         @keyframes glow {
@@ -47,7 +48,7 @@
             position: absolute;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.2);
-            animation: moveCircle 10s infinite ease-in-out;
+            animation: moveCircle 5s infinite ease-in-out;
             mix-blend-mode: screen;
         }
 
@@ -57,7 +58,7 @@
             top: -100px;
             left: -100px;
             background: rgba(155, 89, 182, 0.2);
-            animation-duration: 6s;
+            animation-duration: 3s;
         }
 
         .background-circle:nth-child(2) {
@@ -66,7 +67,7 @@
             bottom: -50px;
             right: -50px;
             background: rgba(118, 72, 188, 0.3);
-            animation-duration: 8s;
+            animation-duration: 4s;
         }
 
         .background-circle:nth-child(3) {
@@ -75,7 +76,7 @@
             top: 20%;
             left: 70%;
             background: rgba(170, 102, 204, 0.2);
-            animation-duration: 10s;
+            animation-duration: 5s;
         }
 
         @keyframes moveCircle {
@@ -94,7 +95,7 @@
             position: absolute;
             font-size: 2vw;
             color: rgba(255, 255, 255, 0.2);
-            animation: bounce 6s infinite ease-in-out;
+            animation: bounce 3s infinite ease-in-out;
             pointer-events: none;
         }
 
@@ -118,12 +119,34 @@
         }
 
         .bouncing-text:nth-child(5) {
-            animation-duration: 7s;
+            animation-duration: 3.5s;
         }
 
         .bouncing-text:nth-child(6) {
-            animation-duration: 9s;
+            animation-duration: 4.5s;
         }
+
+        #explodeButton {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 20px;
+            font-size: 1.2em;
+            color: #fff;
+            background-color: #6a0dad;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        #explodeButton:hover {
+            background-color: #9d4edd;
+            transform: scale(1.1);
+        }
+
 
     </style>
 </head>
@@ -141,3 +164,49 @@
     </audio>
 </body>
 </html>
+
+<script>
+    document.getElementById('explodeButton').addEventListener('click', function() {
+        var audio = new Audio('daj.mp3');
+        audio.play();
+    
+        const explosionContainer = document.createElement('div');
+        explosionContainer.style.position = 'absolute';
+        explosionContainer.style.top = '50%';
+        explosionContainer.style.left = '50%';
+        explosionContainer.style.transform = 'translate(-50%, -50%)';
+        document.body.appendChild(explosionContainer);
+    
+        for (let i = 0; i < 30; i++) {
+            const smallDaj = document.createElement('div');
+            smallDaj.textContent = 'DAJ';
+            smallDaj.style.position = 'absolute';
+            smallDaj.style.fontSize = '1.5em';
+            smallDaj.style.color = 'rgba(255, 255, 255, 0.8)';
+            smallDaj.style.left = '0';
+            smallDaj.style.top = '0';
+            smallDaj.style.pointerEvents = 'none';
+            explosionContainer.appendChild(smallDaj);
+    
+            const angle = Math.random() * 2 * Math.PI;
+            const distance = Math.random() * 200 + 100;
+            const x = Math.cos(angle) * distance;
+            const y = Math.sin(angle) * distance;
+    
+            smallDaj.animate([
+                { transform: 'translate(0, 0)', opacity: 1 },
+                { transform: `translate(${x}px, ${y}px)`, opacity: 0 }
+            ], {
+                duration: 1000,
+                easing: 'ease-out',
+                fill: 'forwards'
+            });
+        }
+    
+        setTimeout(() => {
+            document.body.removeChild(explosionContainer);
+        }, 1500);
+    });
+</script>
+    
+    
